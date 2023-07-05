@@ -1,11 +1,13 @@
 import React from "react";
 import Navbar from "./components/Navbar";
+import Section from "./components/Section";
 
 function MainPage() {
   return (
     <>
       <Navbar/>
-      <div>MainPage</div>
+      
+      <Section/>
     </>
   );
 }
