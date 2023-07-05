@@ -1,33 +1,31 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
-#header{
+#header {
   width: 100%;
-  height:80vh;
+  height: 80vh;
   margin-top: 70px;
-
 }
 
-#header h1{
+#header h1 {
   margin: 0;
   font-size: 48px;
   font-weight: 700;
-  color:black;
+  color: black;
 }
 
-#header .brand-name{
-  color:#0d6efd;
-
+#header .brand-name {
+  color: #0d6efd;
 }
 
-#header h2{
-  color:#484848;
+#header h2 {
+  color: #484848;
   font-size: 24px;
 }
 
-#header .btn-get-started{
+#header .btn-get-started {
   font-weight: 500;
   font-size: 16px;
   letter-spacing: 1px;
@@ -35,34 +33,26 @@
   padding: 10px 30px;
   border-radius: 50px;
   transition: 0.5s;
-  color:#0d6efd;
-  border:2px xolis #0d6efd;
+  color: #0d6efd;
+  border: 2px xolis #0d6efd;
   text-decoration: none;
-
 }
-#header .btn-get-started:hover{
+#header .btn-get-started:hover {
   background-color: #0d6efd;
   color: #fff;
 }
 
-#header .animated{
+#header .animated {
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
 
-@keyframes up-down{
-  0%{
-      transform: translateY(10px);
+@keyframes up-down {
+  0% {
+    transform: translateY(10px);
   }
-  100%{
-      transform: translateY(-10px);
+  100% {
+    transform: translateY(-10px);
   }
 }
 
-@keyframes up-down{
-  0%{
-      transform: translateY(10px);
-  }
-  100%{
-      transform: translateY(-10px);
-  }
-}
+

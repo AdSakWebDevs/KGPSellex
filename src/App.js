@@ -4,7 +4,6 @@ import Mainpage from './MainPage'
 import SellPage from './SellPage'
 import BuyPage from './BuyPage'
 
-
 function App() {
   return (
     <>

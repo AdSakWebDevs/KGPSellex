@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import float from './img/float.png'
 
 function Section() {
   return (
@@ -15,19 +16,18 @@ function Section() {
                   
                 </h1>
 
-                <h2 className="my-3"></h2>
 
                 <div className="mt-3">
-                  <NavLink to="/buy" className="btn-get-started m-2">
+                  <NavLink to="/buy" className="btn-get-started mx-2 mb-5">
                     BUY
                   </NavLink>
-                  <NavLink to="/sell" className="btn-get-started m-2">
+                  <NavLink to="/sell" className="btn-get-started mx-2 mb-5">
                     SELL
                   </NavLink>
                 </div>
               </div>
-              <div className="col-lg-6 order-1 order-lg-2 header-img">
-                {/* <img src={p} className="img-fluid animated" alt="" /> */}
+              <div className="col-lg-6 order-1 order-lg-2 header-img mt-5">
+                <img src={float} className="img-fluid animated" alt="" />
               </div>
             </div>
           </div>
