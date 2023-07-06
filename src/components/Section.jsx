@@ -27,7 +27,7 @@ function Section() {
                 </div>
               </div>
               <div className="col-lg-6 order-1 order-lg-2 header-img margin-custom d-flex justify-content-center">
-                <img src={float} className="img-fluid animated" alt="" id="logo"/>
+                <img src={float} className="img-fluid animated" alt="" id=""/>
               </div>
             </div>
           </div>

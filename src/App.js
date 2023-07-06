@@ -4,6 +4,8 @@ import Mainpage from './MainPage'
 import SellPage from './SellPage'
 import BuyPage from './BuyPage'
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'jquery/dist/jquery.min.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
 
 function App() {
   return (

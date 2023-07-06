@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref as databaseRef, set } from "firebase/database";
 import { getStorage, ref as stgRef, uploadBytes } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -19,18 +20,28 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
 function Form() {
   const uploadImage = (array, rollno) => {
-    if (array == null) return;
-    const storage = getStorage();
-    const storageRef = stgRef(storage, "images/" + rollno);
+    if (array[0] == null) alert("Please upload image!");
+    else {
+      const storage = getStorage();
+      const storageRef = stgRef(storage, "images/" + rollno);
 
-    uploadBytes(storageRef, array[0]).then(() => {
-      console.log("Image pushed"); //render the other component then
-    });
-    // console.log(array, rollno);
+      uploadBytes(storageRef, array[0])
+        .then(() => {
+          console.log("Image pushed"); //render the other component then
+          alert("Post has been successfully made! Repost to update.");
+          navigate("/");
+          // setRedirect("true");
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("Your post was unsuccessful! Please retry.");
+        });
+      // console.log(array, rollno);
+    }
   };
 
   const writeUserData = (
@@ -56,13 +67,14 @@ function Form() {
       product: product,
       resolved: false,
     });
-    
+
     // console.log(rollNoState);
     uploadImage(arr, rollNoState);
   };
 
   const [arr, setArr] = useState([]);
   const [rollNoState, setRollNoState] = useState("");
+  const navigate = useNavigate();
 
   const imageUploaded = (array) => {
     setArr(array);
@@ -79,13 +91,24 @@ function Form() {
       const descp = document.getElementById("descp").value;
       const amt = document.querySelector("#amt").value;
       const product = document.querySelector("#product").value;
-
-      writeUserData(name, rollno, hall, email, phno, descp, amt, product);
-      // console.log(name, rollno, hall, email, phno, descp, amt, product);
-      // console.log(document.getElementById("rollno"))
+      if (
+        name === "" ||
+        rollno === "" ||
+        hall === "" ||
+        email === "" ||
+        phno === "" ||
+        descp === "" ||
+        amt === "" ||
+        product === ""
+      ) {
+        alert("All the fields are mandatory!");
+      } else {
+        writeUserData(name, rollno, hall, email, phno, descp, amt, product);
+        // console.log(name, rollno, hall, email, phno, descp, amt, product);
+        // console.log(document.getElementById("rollno"))
+      }
     }
   };
-
   return (
     <>
       <div className="my-3">
@@ -114,7 +137,7 @@ function Form() {
                 className="form-control"
                 id="rollno"
                 placeholder="22XX10011"
-                onChange={()=>{
+                onChange={() => {
                   // console.log(document.getElementById("rollno").value)
                   setRollNoState(document.getElementById("rollno").value);
                 }}
@@ -227,7 +250,7 @@ function Form() {
             <div className="col-12 my-4">
               <button
                 className="btn-get-started"
-                type="submit"
+                type="button"
                 onClick={() => {
                   push();
                 }}
