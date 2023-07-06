@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Mainpage from './MainPage'
 import SellPage from './SellPage'
 import BuyPage from './BuyPage'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (

@@ -20,12 +20,21 @@
   color: #0d6efd;
 }
 
-#header h2 {
+.margin-custom{
+  margin-top: 15vh!important;
+  margin-bottom: 15vh!important;
+}
+
+h2 {
   color: #484848;
   font-size: 24px;
 }
 
-#header .btn-get-started {
+.brand-name{
+  width: 40vh;
+}
+
+.btn-get-started {
   font-weight: 500;
   font-size: 16px;
   letter-spacing: 1px;
@@ -34,20 +43,28 @@
   border-radius: 50px;
   transition: 0.5s;
   color: #0d6efd;
-  border: 2px xolis #0d6efd;
+  border: 2px  #0d6efd;
   text-decoration: none;
+  background-color: #ffffff;
 }
-#header .btn-get-started:hover {
+.btn-get-started:hover {
   background-color: #0d6efd;
-  color: #fff;
+  color: #ffffff;
 }
 
-#header .animated {
-  animation: up-down 2s ease-in-out infinite alternate-reverse both;
+#logo{
+  width: 40vh;
+}
+
+.animated {
+  animation: up-down 2.5s ease-in-out infinite alternate-reverse both;
 }
 
 @keyframes up-down {
   0% {
+    transform: translateY(-10px);
+  }
+  50%{
     transform: translateY(10px);
   }
   100% {
