@@ -20,9 +20,16 @@
   color: #0d6efd;
 }
 
-.margin-custom{
-  margin-top: 15vh!important;
-  margin-bottom: 15vh!important;
+.margin-custom {
+  margin-top: 15vh !important;
+  margin-bottom: 15vh !important;
+}
+
+.a-perfect-place {
+  animation: entry-1;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
 }
 
 h2 {
@@ -30,8 +37,12 @@ h2 {
   font-size: 24px;
 }
 
-.brand-name{
+.brand-name {
   width: 40vh;
+  animation: entry-2;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
 }
 
 .btn-get-started {
@@ -43,16 +54,29 @@ h2 {
   border-radius: 50px;
   transition: 0.5s;
   color: #0d6efd;
-  border: 2px  #0d6efd;
+  border: 2px #0d6efd;
   text-decoration: none;
   background-color: #ffffff;
 }
+
+.btn-anim {
+  animation: button-entry 1.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
+}
+
+.floater-anim{
+  animation: floater 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
+}
+
 .btn-get-started:hover {
   background-color: #0d6efd;
   color: #ffffff;
 }
 
-#logo{
+#logo {
   width: 40vh;
 }
 
@@ -60,11 +84,18 @@ h2 {
   animation: up-down 2.5s ease-in-out infinite alternate-reverse both;
 }
 
+.box-shadow-card{
+  box-shadow: 4px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius:10px;
+  background-color: #fcfcfc;
+  margin-bottom: 20px;
+}
+
 @keyframes up-down {
   0% {
     transform: translateY(-10px);
   }
-  50%{
+  50% {
     transform: translateY(10px);
   }
   100% {
@@ -72,4 +103,59 @@ h2 {
   }
 }
 
+@keyframes button-entry {
+  0% {
+    opacity: 0.5;
+    transform: translateY(50%);
+  }
+  90%{
+    transform: translateY(-10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+@keyframes entry-1 {
+  0% {
+    opacity: 0.5;
+    transform: translateX(15%);
+  }
+  90%{
+    transform: translateX(-1%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes entry-2 {
+  0% {
+    opacity: 0.5;
+    transform: translateX(-15%);
+  }
+  90%{
+    transform: translateX(1%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes floater{
+  0%{
+    opacity: 0;
+  }
+  25%{
+    opacity: 0.25;
+  }
+  50%{
+    opacity: 0.5;
+  }
+  100%{
+    opacity: 1;
+  }
+}

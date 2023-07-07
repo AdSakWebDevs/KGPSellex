@@ -33,6 +33,7 @@ function Form() {
         .then(() => {
           console.log("Image pushed"); //render the other component then
           alert("Post has been successfully made! Repost to update.");
+          alert("Please keep checking your mail inbox or spam folder. We might contact you on behalf of seller.")
           navigate("/");
           // setRedirect("true");
         })
@@ -65,7 +66,7 @@ function Form() {
       descp: descp,
       amt: amt,
       product: product,
-      resolved: false,
+      status: "open",
     });
 
     // console.log(rollNoState);
@@ -89,8 +90,10 @@ function Form() {
       const email = document.getElementById("email").value;
       const phno = document.getElementById("phno").value;
       const descp = document.getElementById("descp").value;
-      const amt = document.querySelector("#amt").value;
+      const amt = document.getElementById("amt").value;
       const product = document.querySelector("#product").value;
+      const num = Number(amt);
+      const phnum = Number(phno);
       if (
         name === "" ||
         rollno === "" ||
@@ -102,6 +105,10 @@ function Form() {
         product === ""
       ) {
         alert("All the fields are mandatory!");
+      } else if (phnum != phno || phno.length !== 10) {
+        alert("A phone number is supposed to have ten digits!");
+      } else if (num != amt) {
+        alert("Please enter the price in digits!");
       } else {
         writeUserData(name, rollno, hall, email, phno, descp, amt, product);
         // console.log(name, rollno, hall, email, phno, descp, amt, product);
@@ -114,7 +121,7 @@ function Form() {
       <div className="my-3">
         <h1 className="text-center">Enter the details below</h1>
       </div>
-      <div className="container contact_div">
+      <div className="container contact_div box-shadow-card">
         <div className="row">
           <div className="col-md-6 col-10 mx-auto d-flex justify-content-center flex-column">
             <div className="my-4">
@@ -125,7 +132,7 @@ function Form() {
                 type="text"
                 className="form-control"
                 id="name"
-                placeholder="Samarth Singh"
+                placeholder="Full Name"
               />
             </div>
             <div className="my-4">
@@ -173,7 +180,7 @@ function Form() {
                 type="text"
                 className="form-control"
                 id="phno"
-                placeholder="8978126512"
+                placeholder="10 digits"
               />
             </div>
 
@@ -198,45 +205,29 @@ function Form() {
               <label htmlFor="descp" className="form-label">
                 Product Description
               </label>
-              <textarea className="form-control" id="descp" rows="3"></textarea>
+              <textarea
+                className="form-control"
+                id="descp"
+                rows="3"
+                placeholder="Write a short description."
+              ></textarea>
             </div>
             <div className="my-4">
               <label htmlFor="amt" className="form-label">
                 Selling Price(INR)
               </label>
-              <select
-                className="form-select"
+
+              <input
+                type="text"
+                className="form-control"
                 id="amt"
-                aria-label="Default select example"
-              >
-                {/* <option selected>Price Range</option> */}
-                <option value="1">100-200</option>
-                <option value="2">200-300</option>
-                <option value="3">200-250</option>
-                <option value="4">250-300</option>
-                <option value="5">300-350</option>
-                <option value="6">350-400</option>
-                <option value="7">400-450</option>
-                <option value="8">450-500</option>
-                <option value="9">500-550</option>
-                <option value="10">550-600</option>
-                <option value="11">600-650</option>
-                <option value="12">650-700</option>
-                <option value="13">700-750</option>
-                <option value="14">750-800</option>
-                <option value="15">800-850</option>
-                <option value="16">850-900</option>
-                <option value="17">900-950</option>
-                <option value="18">950-1000</option>
-                <option value="19">1000-1050</option>
-                <option value="20">1050-1100</option>
-                <option value="21">1100-1150</option>
-              </select>
+                placeholder="In digits."
+              />
             </div>
 
             <div className="my-4">
               <label htmlFor="image" className="form-label">
-                Picture of the Product
+                Image of the Product
               </label>
               <input
                 className="form-control"
@@ -247,17 +238,16 @@ function Form() {
                 }}
               />
             </div>
-            <div className="col-12 my-4">
-              <button
-                className="btn-get-started"
-                type="button"
-                onClick={() => {
-                  push();
-                }}
-              >
-                SUBMIT FORM
-              </button>
-            </div>
+
+            <button
+              className="btn-get-started mb-4"
+              type="button"
+              onClick={() => {
+                push();
+              }}
+            >
+              SUBMIT FORM
+            </button>
           </div>
         </div>
       </div>

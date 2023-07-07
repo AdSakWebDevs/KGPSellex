@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import float from './img/float.png'
+import float from "./img/float.png";
 
 function Section() {
   return (
@@ -9,25 +9,26 @@ function Section() {
         <div className="row">
           <div className="col-10 mx-auto">
             <div className="row d-flex justify-content-between">
-              <div className="col-md-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex justify-content-center flex-column">
+              <div className="col-md-6 pt-lg-0 order-2 order-lg-1 d-flex justify-content-center flex-column ">
                 <h1>
-                  A perfect place{" "}
-                  <div className="brand-name"><strong className="brand-name">KGP-SELLEX</strong></div>
-                  
+                  <div className="a-perfect-place">A perfect place</div>
+
+                  <div className="brand-name">
+                    <strong className="brand-name">KGP-SELLEX</strong>
+                  </div>
                 </h1>
 
-
                 <div className="mt-3 d-flex flex-row">
-                  <NavLink to="/buy" className="btn-get-started mx-2 mb-5">
+                  <NavLink to="/buy" className="btn-get-started mx-2 mb-5 btn-anim">
                     BUY
                   </NavLink>
-                  <NavLink to="/sell" className="btn-get-started mx-2 mb-5">
+                  <NavLink to="/sell" className="btn-get-started mx-2 mb-5 btn-anim">
                     SELL
                   </NavLink>
                 </div>
               </div>
-              <div className="col-lg-6 order-1 order-lg-2 header-img margin-custom d-flex justify-content-center">
-                <img src={float} className="img-fluid animated" alt="" id=""/>
+              <div className="col-lg-6 order-1 order-lg-2 header-img margin-custom d-flex justify-content-center floater-anim">
+                <img src={float} className="img-fluid animated" alt="" id="logo" />
               </div>
             </div>
           </div>
