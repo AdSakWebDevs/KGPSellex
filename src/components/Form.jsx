@@ -33,7 +33,7 @@ function Form() {
         .then(() => {
           console.log("Image pushed"); //render the other component then
           alert("Post has been successfully made! Repost to update.");
-          alert("Please keep checking your mail inbox or spam folder. We might contact you on behalf of seller.")
+          alert("Please keep checking your mail inbox or spam folder. We might contact you on behalf of seller")
           navigate("/");
           // setRedirect("true");
         })
@@ -57,7 +57,7 @@ function Form() {
   ) => {
     const db = getDatabase();
     // console.log(db);
-    set(databaseRef(db, "unpurchased/" + rollno), {
+    set(databaseRef(db, "items/" + rollno), {
       username: name,
       email: email,
       rollno: rollno,
@@ -121,7 +121,8 @@ function Form() {
       <div className="my-3">
         <h1 className="text-center">Enter the details below</h1>
       </div>
-      <div className="container contact_div box-shadow-card">
+      <div className="custom-card-margin">
+      <div className="container contact_div box-shadow-card mx-auto">
         <div className="row">
           <div className="col-md-6 col-10 mx-auto d-flex justify-content-center flex-column">
             <div className="my-4">
@@ -163,7 +164,7 @@ function Form() {
             </div>
             <div className="my-4">
               <label htmlFor="email" className="form-label">
-                Email address
+                Email Address
               </label>
               <input
                 type="email"
@@ -251,6 +252,8 @@ function Form() {
           </div>
         </div>
       </div>
+      </div>
+      
     </>
   );
 }
