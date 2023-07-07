@@ -11,6 +11,8 @@ function SellCards(props) {
   const fetchImage = (rollno) => {
     getDownloadURL(stgRef(storage, `images/${props.rollno}`)).then((url) => {
       setImageURL(url);
+    }).catch(()=>{
+        alert("No products available currently.")
     });
   };
 

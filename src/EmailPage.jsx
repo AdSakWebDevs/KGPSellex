@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -6,6 +6,7 @@ function EmailPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const seller = location.state.name;
+  const [mailStatus, setMailStatus] = useState("false");
 
   const sendEmail = () => {
     const mailTo = location.state.email;
@@ -29,17 +30,32 @@ function EmailPage() {
         window.Email.send(config)
           .then((response) => {
             if (response === "OK") {
-              alert("Email has been sent successfully!");
+              setMailStatus("false");
+              setTimeout(() => {
+                alert("Email has been sent successfully!");
+                navigate("/buy");
+              }, 1000);
+              
             } else {
-              alert(
-                "Failure occured! Please try contacting the person by phone"
-              );
+              setMailStatus("false");
+              setTimeout(() => {
+                alert(
+                  "Failure occured! Please try contacting the person by phone"
+                );
+                navigate("/buy");
+              }, 1000);
+
+              
             }
-            navigate("/");
           })
           .catch((error) => {
             console.log(error);
-            alert("Email could not be sent! Please retry later.");
+            setMailStatus("failed");
+            setTimeout(() => {
+              alert("Email could not be sent! Please retry later.");
+            }, 1000);
+            navigate("/buy");
+            
           });
       }
     }
@@ -68,7 +84,7 @@ function EmailPage() {
             </div>
             <div className="my-4">
               <label htmlFor="" className="form-label">
-                Phone number
+                Phone Number
               </label>
               <input
                 className="form-control"
@@ -88,15 +104,20 @@ function EmailPage() {
                 placeholder="Body of mail."
               ></textarea>
             </div>
-
-            <button
-              className="btn-get-started mb-4"
-              onClick={() => {
-                sendEmail();
-              }}
-            >
-              SUBMIT
-            </button>
+            {mailStatus === "true" ? (
+              <div className="d-flex justify-content-center mb-4"><div className="spinner-border text-primary" role="status"></div></div>
+              
+            ) : (
+              <button
+                className="btn-get-started mb-4"
+                onClick={() => {
+                  setMailStatus("true");
+                  sendEmail();
+                }}
+              >
+                SUBMIT
+              </button>
+            )}
           </div>
         </div>
       </div>

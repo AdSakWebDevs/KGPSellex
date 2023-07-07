@@ -32,14 +32,24 @@ function Form() {
       uploadBytes(storageRef, array[0])
         .then(() => {
           console.log("Image pushed"); //render the other component then
-          alert("Post has been successfully made! Repost to update.");
-          alert("Please keep checking your mail inbox or spam folder. We might contact you on behalf of seller")
-          navigate("/");
+          setPosted("false");
+          setTimeout(() => {
+            alert("Post has been successfully made! Repost to update.");
+            alert(
+              "Please keep checking your mail inbox or spam folder. We might contact you on behalf of seller."
+            );
+            navigate("/");
+          }, 1000);
+
           // setRedirect("true");
         })
         .catch((error) => {
           console.log(error);
-          alert("Your post was unsuccessful! Please retry.");
+          setPosted("false");
+          setTimeout(() => {
+            alert("Your post was unsuccessful! Please retry.");
+            navigate("/sell");
+          }, 1000);
         });
       // console.log(array, rollno);
     }
@@ -76,6 +86,7 @@ function Form() {
   const [arr, setArr] = useState([]);
   const [rollNoState, setRollNoState] = useState("");
   const navigate = useNavigate();
+  const [posted, setPosted] = useState("false");
 
   const imageUploaded = (array) => {
     setArr(array);
@@ -122,138 +133,146 @@ function Form() {
         <h1 className="text-center">Enter the details below</h1>
       </div>
       <div className="custom-card-margin">
-      <div className="container contact_div box-shadow-card mx-auto">
-        <div className="row">
-          <div className="col-md-6 col-10 mx-auto d-flex justify-content-center flex-column">
-            <div className="my-4">
-              <label htmlFor="name" className="form-label">
-                Name
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                placeholder="Full Name"
-              />
-            </div>
-            <div className="my-4">
-              <label htmlFor="rollno" className="form-label">
-                Roll Number
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="rollno"
-                placeholder="22XX10011"
-                onChange={() => {
-                  // console.log(document.getElementById("rollno").value)
-                  setRollNoState(document.getElementById("rollno").value);
-                }}
-              />
-            </div>
-            <div className="my-4">
-              <label htmlFor="hall" className="form-label">
-                Hall Name
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="hall"
-                placeholder="LBS"
-              />
-            </div>
-            <div className="my-4">
-              <label htmlFor="email" className="form-label">
-                Email Address
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                placeholder="name@example.com"
-              />
-            </div>
-            <div className="my-4">
-              <label htmlFor="phno" className="form-label">
-                Phone Number
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="phno"
-                placeholder="10 digits"
-              />
-            </div>
+        <div className="container contact_div box-shadow-card mx-auto">
+          <div className="row">
+            <div className="col-md-6 col-10 mx-auto d-flex justify-content-center flex-column">
+              <div className="my-4">
+                <label htmlFor="name" className="form-label">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  placeholder="Full Name"
+                />
+              </div>
+              <div className="my-4">
+                <label htmlFor="rollno" className="form-label">
+                  Roll Number
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="rollno"
+                  placeholder="22XX10011"
+                  onChange={() => {
+                    // console.log(document.getElementById("rollno").value)
+                    setRollNoState(document.getElementById("rollno").value);
+                  }}
+                />
+              </div>
+              <div className="my-4">
+                <label htmlFor="hall" className="form-label">
+                  Hall Name
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="hall"
+                  placeholder="LBS"
+                />
+              </div>
+              <div className="my-4">
+                <label htmlFor="email" className="form-label">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  placeholder="name@example.com"
+                />
+              </div>
+              <div className="my-4">
+                <label htmlFor="phno" className="form-label">
+                  Phone Number
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="phno"
+                  placeholder="10 digits"
+                />
+              </div>
 
-            <div className="my-4">
-              <label htmlFor="product" className="form-label">
-                Product
-              </label>
-              <select
-                className="form-select"
-                id="product"
-                aria-label="Default select example"
-              >
-                {/* <option selected>Menu</option> */}
-                <option value="ED-Kit">ED-Kit</option>
-                <option value="Cycle">Cycle</option>
-                <option value="Books">Books</option>
-                <option value="Other">Others</option>
-              </select>
-            </div>
+              <div className="my-4">
+                <label htmlFor="product" className="form-label">
+                  Product
+                </label>
+                <select
+                  className="form-select"
+                  id="product"
+                  aria-label="Default select example"
+                >
+                  {/* <option selected>Menu</option> */}
+                  <option value="ED-Kit">ED-Kit</option>
+                  <option value="Cycle">Cycle</option>
+                  <option value="Books">Books</option>
+                  <option value="Other">Others</option>
+                </select>
+              </div>
 
-            <div className="my-4">
-              <label htmlFor="descp" className="form-label">
-                Product Description
-              </label>
-              <textarea
-                className="form-control"
-                id="descp"
-                rows="3"
-                placeholder="Write a short description."
-              ></textarea>
-            </div>
-            <div className="my-4">
-              <label htmlFor="amt" className="form-label">
-                Selling Price(INR)
-              </label>
+              <div className="my-4">
+                <label htmlFor="descp" className="form-label">
+                  Product Description
+                </label>
+                <textarea
+                  className="form-control"
+                  id="descp"
+                  rows="3"
+                  placeholder="Write a short description."
+                ></textarea>
+              </div>
+              <div className="my-4">
+                <label htmlFor="amt" className="form-label">
+                  Selling Price(INR)
+                </label>
 
-              <input
-                type="text"
-                className="form-control"
-                id="amt"
-                placeholder="In digits."
-              />
-            </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="amt"
+                  placeholder="In digits."
+                />
+              </div>
 
-            <div className="my-4">
-              <label htmlFor="image" className="form-label">
-                Image of the Product
-              </label>
-              <input
-                className="form-control"
-                type="file"
-                id="image"
-                onChange={(e) => {
-                  imageUploaded(e.target.files);
-                }}
-              />
+              <div className="my-4">
+                <label htmlFor="image" className="form-label">
+                  Image of the Product
+                </label>
+                <input
+                  className="form-control"
+                  type="file"
+                  id="image"
+                  onChange={(e) => {
+                    imageUploaded(e.target.files);
+                  }}
+                />
+              </div>
+              {posted === "true" ? (
+                <div className="d-flex justify-content-center mb-4">
+                  <div
+                    className="spinner-border text-primary"
+                    role="status"
+                  ></div>
+                </div>
+              ) : (
+                <button
+                  className="btn-get-started mb-4"
+                  type="button"
+                  onClick={() => {
+                    setPosted("true");
+                    push();
+                  }}
+                >
+                  SUBMIT FORM
+                </button>
+              )}
             </div>
-
-            <button
-              className="btn-get-started mb-4"
-              type="button"
-              onClick={() => {
-                push();
-              }}
-            >
-              SUBMIT FORM
-            </button>
           </div>
         </div>
       </div>
-      </div>
-      
     </>
   );
 }
