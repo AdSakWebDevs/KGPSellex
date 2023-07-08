@@ -121,6 +121,7 @@ function Form() {
       } else if (num != amt) {
         alert("Please enter the price in digits!");
       } else {
+        setPosted("true");
         writeUserData(name, rollno, hall, email, phno, descp, amt, product);
         // console.log(name, rollno, hall, email, phno, descp, amt, product);
         // console.log(document.getElementById("rollno"))
@@ -262,7 +263,6 @@ function Form() {
                   className="btn-get-started mb-4"
                   type="button"
                   onClick={() => {
-                    setPosted("true");
                     push();
                   }}
                 >

@@ -18,6 +18,7 @@ function EmailPage() {
     if (message === "" || senderName === "" || phone === "") {
       alert("All fields are mandatory!");
     } else {
+      setMailStatus("true");
       const config = {
         SecureToken: "f2d7bb8a-94cf-40b2-b1b1-27054eb21bd9",
         To: mailTo,
@@ -35,7 +36,6 @@ function EmailPage() {
                 alert("Email has been sent successfully!");
                 navigate("/buy");
               }, 1000);
-              
             } else {
               setMailStatus("false");
               setTimeout(() => {
@@ -44,8 +44,6 @@ function EmailPage() {
                 );
                 navigate("/buy");
               }, 1000);
-
-              
             }
           })
           .catch((error) => {
@@ -55,7 +53,6 @@ function EmailPage() {
               alert("Email could not be sent! Please retry later.");
             }, 1000);
             navigate("/buy");
-            
           });
       }
     }
@@ -105,13 +102,16 @@ function EmailPage() {
               ></textarea>
             </div>
             {mailStatus === "true" ? (
-              <div className="d-flex justify-content-center mb-4"><div className="spinner-border text-primary" role="status"></div></div>
-              
+              <div className="d-flex justify-content-center mb-4">
+                <div
+                  className="spinner-border text-primary"
+                  role="status"
+                ></div>
+              </div>
             ) : (
               <button
                 className="btn-get-started mb-4"
                 onClick={() => {
-                  setMailStatus("true");
                   sendEmail();
                 }}
               >
