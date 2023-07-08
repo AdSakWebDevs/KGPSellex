@@ -118,7 +118,8 @@ function Form() {
         phno === "" ||
         descp === "" ||
         amt === "" ||
-        product === ""
+        product === "" ||
+        arr.length == 0
       ) {
         alert("All the fields are mandatory!");
       } else if (phnum != phno || phno.length !== 10) {
