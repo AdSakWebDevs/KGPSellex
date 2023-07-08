@@ -24,8 +24,13 @@ initializeApp(firebaseConfig);
 
 function Form() {
   const uploadImage = (array, rollno) => {
-    if (array[0] == null) alert("Please upload image!");
-    else {
+    if (array[0] == null) {
+      setPosted("false");
+      setTimeout(() => {
+        alert("Please upload image!");
+      }, 1000);
+      
+    } else {
       const storage = getStorage();
       const storageRef = stgRef(storage, "images/" + rollno);
 

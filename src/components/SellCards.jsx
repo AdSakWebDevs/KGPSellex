@@ -9,11 +9,16 @@ function SellCards(props) {
   const navigate = useNavigate();
 
   const fetchImage = (rollno) => {
-    getDownloadURL(stgRef(storage, `images/${props.rollno}`)).then((url) => {
-      setImageURL(url);
-    }).catch(()=>{
-        alert("No products available currently.")
-    });
+    getDownloadURL(stgRef(storage, `images/${props.rollno}`))
+      .then((url) => {
+        setImageURL(url);
+      })
+      .catch(() => {
+        navigate("/");
+        setTimeout(() => {
+          alert("No products available currently.");
+        }, 1000);
+      });
   };
 
   fetchImage();
@@ -70,7 +75,16 @@ function SellCards(props) {
                       OPEN
                     </NavLink>
                   )}
-                  <button onClick={() => {navigate("/email", {state: {name: props.seller, email: props.email}})}} className="btn-get-started mx-2 my-3">CONTACT</button>
+                  <button
+                    onClick={() => {
+                      navigate("/email", {
+                        state: { name: props.seller, email: props.email },
+                      });
+                    }}
+                    className="btn-get-started mx-2 my-3"
+                  >
+                    CONTACT
+                  </button>
                 </div>
               </div>
             </div>
