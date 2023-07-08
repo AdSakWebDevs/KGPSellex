@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import "./BuyPage.css";
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref as databaseRef, child, get } from "firebase/database";
+import { getDatabase, ref as databaseRef, child, get, onValue } from "firebase/database";
 import SellCards from "./components/SellCards";
 
 
@@ -21,34 +21,39 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 function BuyPage() {
+  const db = getDatabase();
   const dbRef = databaseRef(getDatabase());
 
   const [dataObj, setDataObj] = useState([]);
+ 
 
+  const fetchItems = () => {
+    onValue(databaseRef(db, 'items/'),(snapshot) => {
+      setDataObj(Object.values(snapshot.val()));
+    });
+  }
 
+  // const fetchData = () => {
+  //   get(child(dbRef, `items/`))
+  //     .then((snapshot) => {
+  //       if (snapshot.exists()) {
+  //         const dataArray = Object.values(snapshot.val());
+  //       //   console.log(data);
+  //         setDataObj(dataArray);
+  //       //   console.log(rollNoArray)
+  //       } else {
+  //         alert("No data to display!");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       alert("Some error occured! Please try again later.");
+  //     });
 
-
-  const fetchData = () => {
-    get(child(dbRef, `items/`))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          const data = snapshot.val();
-          const dataArray = Object.values(data);
-        //   console.log(data);
-          setDataObj(dataArray);
-        //   console.log(rollNoArray)
-        } else {
-          alert("No data to display!");
-        }
-      })
-      .catch((error) => {
-        alert("Some error occured! Please try again later.");
-      });
-
-  };
+  // };
   useEffect(() => {
-    fetchData();
-  });
+    fetchItems();
+    // console.log("hello");
+  }, []);
 
 
   return (
