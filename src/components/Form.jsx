@@ -41,7 +41,7 @@ function Form() {
           setTimeout(() => {
             alert("Post has been successfully made! Repost to update.");
             alert(
-              "Please keep checking your mail inbox or spam folder. We might contact you on behalf of seller."
+              "Please keep checking your mail inbox or spam folder. We might contact you on behalf of buyer."
             );
             navigate("/");
           }, 1000);
@@ -52,7 +52,7 @@ function Form() {
           console.log(error);
           setPosted("false");
           setTimeout(() => {
-            alert("Your post was unsuccessful! Please retry.");
+            alert("Your post was unsuccessful! Please retry later.");
             navigate("/sell");
           }, 1000);
         });
@@ -82,6 +82,7 @@ function Form() {
       amt: amt,
       product: product,
       status: "open",
+      people: 0
     });
 
     // console.log(rollNoState);

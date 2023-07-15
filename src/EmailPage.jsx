@@ -40,7 +40,7 @@ function EmailPage() {
               setMailStatus("false");
               setTimeout(() => {
                 alert(
-                  "Failure occured! Please try contacting the person by phone"
+                  "Failure occured! Please try contacting the person by phone."
                 );
                 navigate("/buy");
               }, 1000);

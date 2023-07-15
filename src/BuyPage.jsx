@@ -3,9 +3,15 @@ import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import "./BuyPage.css";
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref as databaseRef, child, get, onValue } from "firebase/database";
+import {
+  getDatabase,
+  ref as databaseRef,
+  child,
+  get,
+  onValue,
+} from "firebase/database";
 import SellCards from "./components/SellCards";
-
+import LoaderPage from "./LoaderPage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCMM56fnkSA1P5p4b6plQso_3001MpEEYI",
@@ -25,13 +31,12 @@ function BuyPage() {
   const dbRef = databaseRef(getDatabase());
 
   const [dataObj, setDataObj] = useState([]);
- 
 
   const fetchItems = () => {
-    onValue(databaseRef(db, 'items/'),(snapshot) => {
+    onValue(databaseRef(db, "items/"), (snapshot) => {
       setDataObj(Object.values(snapshot.val()));
     });
-  }
+  };
 
   // const fetchData = () => {
   //   get(child(dbRef, `items/`))
@@ -55,19 +60,32 @@ function BuyPage() {
     // console.log("hello");
   }, []);
 
-
   return (
-    
     <>
       <Navbar />
-      {
-        dataObj.map((item, key)=>{
-            return(
-                <SellCards key={key} seller={item.username} rollno={item.rollno} hall={item.hall} email={item.email} phno={item.phno} pdtype={item.product} descp={item.descp} price={item.amt} status={item.status}/>
-            );
-            
+      {dataObj.length === 0 ? (
+        <>
+          <LoaderPage/>
+        </>
+      ) : (
+        dataObj.map((item, key) => {
+          return (
+            <SellCards
+              key={key}
+              seller={item.username}
+              rollno={item.rollno}
+              hall={item.hall}
+              email={item.email}
+              phno={item.phno}
+              pdtype={item.product}
+              descp={item.descp}
+              price={item.amt}
+              status={item.status}
+              people={item.people}
+            />
+          );
         })
-      }
+      )}
     </>
   );
 }
